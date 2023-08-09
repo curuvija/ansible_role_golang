@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Milos Curuvija
+  namespace: curuvija
+  description: installs Golang
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.1
+  platforms:
+    - name: Ubuntu
+      versions:
+      - focal
+
+  galaxy_tags:
+    - golang
+
+dependencies: []
