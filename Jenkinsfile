@@ -48,9 +48,5 @@ pipeline {
                 }
             }
         }
-    post {
-        success {
-            sh 'echo something'
-        }
     }
 }
