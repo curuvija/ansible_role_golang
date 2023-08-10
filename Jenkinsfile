@@ -1,6 +1,6 @@
 // docker plugin reference docs https://docs.cloudbees.com/docs/cloudbees-ci/latest/pipelines/docker-workflow
 pipeline {
-    agent { label 'ansible' }
+    agent { label 'molecule' }
 
     options{
         buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
