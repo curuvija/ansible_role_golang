@@ -13,10 +13,25 @@ pipeline {
                 sh 'printenv'
             }
         }
-        stage ("Run Molecule lint") {
+        // TODO: this stage is not working
+        stage ("Run ansible-lint") {
             steps {
                 container('molecule') {
-                    sh 'molecule lint'
+                    sh 'ansible-lint'
+                }
+            }
+        }
+        stage ("Run yamllint") {
+            steps {
+                container('molecule') {
+                    sh 'yamlllint .'
+                }
+            }
+        }
+        stage ("Run flake8") {
+            steps {
+                container('molecule') {
+                    sh 'flake8'
                 }
             }
         }
