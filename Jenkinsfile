@@ -15,35 +15,35 @@ pipeline {
         }
         stage ("Run Molecule lint") {
             steps {
-                container('molecule-ubuntu2004') {
+                container('molecule') {
                     sh 'molecule lint'
                 }
             }
         }
         stage ("Run Molecule create") {
             steps {
-                container('molecule-ubuntu2004') {
+                container('molecule') {
                     sh 'molecule create'
                 }
             }
         }
         stage ("Run Molecule converge") {
             steps {
-                container('molecule-ubuntu2004') {
+                container('molecule') {
                     sh 'molecule converge'
                 }
             }
         }
         stage ("Run Molecule idemotence") {
             steps {
-                container('molecule-ubuntu2004') {
+                container('molecule') {
                     sh 'molecule idempotence'
                 }
             }
         }
         stage ("Run Molecule verify") {
             steps {
-                container('molecule-ubuntu2004') {
+                container('molecule') {
                     sh 'molecule verify'
                 }
             }
