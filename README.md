@@ -1,5 +1,5 @@
-Role Name
-=========
+Ansible Role: Golang
+====================
 
 Installs Golang in /usr/local/go folder.
 
