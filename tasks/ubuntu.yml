@@ -7,15 +7,16 @@
     force_apt_get: true
 - name: Autoremove packages
   ansible.builtin.apt:
-    autoremove: yes
+    autoremove: true
     force_apt_get: true
 - name: Download Golang
   ansible.builtin.get_url:
     url: "https://go.dev/dl/go{{ golang_version }}.linux-amd64.tar.gz"
     dest: "/tmp/{{ golang_version }}.linux-amd64.tar.gz"
     checksum: "sha256:{{ golang_package_sha256 }}"
-- name: Extract golang archive into {{ golang_path }} folder
+    mode: "644"
+- name: Extract golang archive into {{ golang_path }}
   ansible.builtin.unarchive:
     src: "/tmp/{{ golang_version }}.linux-amd64.tar.gz"
     dest: "{{ golang_path }}"
-    remote_src: yes
+    remote_src: true

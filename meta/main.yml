@@ -3,11 +3,11 @@ galaxy_info:
   namespace: curuvija
   description: installs Golang
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.1
+  min_ansible_version: "2.1"
   platforms:
     - name: Ubuntu
       versions:
-      - focal
+        - focal
 
   galaxy_tags:
     - golang

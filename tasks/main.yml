@@ -1,2 +1,3 @@
-- import_tasks: ubuntu.yml
+- name: Import ubuntu tasks
+  ansible.builtin.import_tasks: ubuntu.yml
   when: (ansible_facts['distribution'] == "Ubuntu")

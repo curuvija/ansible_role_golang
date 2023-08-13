@@ -4,6 +4,7 @@ pipeline {
 
     options{
         buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
+        checkoutToSubdirectory('curuvija.golang')
     }
 
     stages {
@@ -13,53 +14,66 @@ pipeline {
                 sh 'printenv'
             }
         }
-        // TODO: this stage is not working
         stage ("Run ansible-lint") {
             steps {
                 container('molecule') {
-                    sh 'ansible-lint'
+                    dir('curuvija.golang') {
+                        sh 'ansible-lint'
+                    }
                 }
             }
         }
         stage ("Run yamllint") {
             steps {
                 container('molecule') {
-                    sh 'yamlllint .'
+                    dir('curuvija.golang') {
+                        sh 'yamllint .'
+                    }
                 }
             }
         }
         stage ("Run flake8") {
             steps {
                 container('molecule') {
-                    sh 'flake8'
+                    dir('curuvija.golang') {
+                        sh 'flake8'
+                    }
                 }
             }
         }
         stage ("Run Molecule create") {
             steps {
                 container('molecule') {
-                    sh 'molecule create'
+                    dir('curuvija.golang') {
+                        sh 'molecule create'
+                    }
                 }
             }
         }
         stage ("Run Molecule converge") {
             steps {
                 container('molecule') {
-                    sh 'molecule converge'
+                    dir('curuvija.golang') {
+                        sh 'molecule converge'
+                    }
                 }
             }
         }
         stage ("Run Molecule idemotence") {
             steps {
                 container('molecule') {
-                    sh 'molecule idempotence'
+                    dir('curuvija.golang') {
+                        sh 'molecule idempotence'
+                    }
                 }
             }
         }
         stage ("Run Molecule verify") {
             steps {
                 container('molecule') {
-                    sh 'molecule verify'
+                    dir('curuvija.golang') {
+                        sh 'molecule verify'
+                    }
                 }
             }
         }

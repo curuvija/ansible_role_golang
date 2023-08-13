@@ -2,12 +2,12 @@
   hosts: all
   gather_facts: true
   tasks:
-    - name: "stat /usr/local/go exists"
-      stat:
+    - name: "Stat /usr/local/go exists"
+      ansible.builtin.stat:
         path: /usr/local/go
       register: golang_path_stat
-    - name: "check if /usr/local/go exists"
-      assert:
+    - name: "Check if /usr/local/go exists"
+      ansible.builtin.assert:
         that:
           - golang_path_stat.stat.exists == True
         success_msg: "/usr/local/go exists"
@@ -15,18 +15,18 @@
     - name: Gather the package facts
       ansible.builtin.package_facts:
         manager: apt
-    - name: "check go-golang is absent"
-      assert:
+    - name: "Check go-golang is absent"
+      ansible.builtin.assert:
         that:
           - "'golang-go' not in ansible_facts.packages"
         success_msg: "go-golang not present"
         fail_msg: "go-golang is still present"
-    - name: "get go version"
-      ansible.builtin.shell: "/usr/local/go/bin/go version"
+    - name: "Get go version"
+      ansible.builtin.command: "/usr/local/go/bin/go version"
       register: golang_version
       changed_when: false
-    - name: "check installed golang version"
-      assert:
+    - name: "Check installed golang version"
+      ansible.builtin.assert:
         that:
           - "'go1.20.5' in golang_version.stdout"
         success_msg: "installed golang version is correct"
