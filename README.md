@@ -36,7 +36,7 @@ Including an example of how to use your role (for instance, with variables passe
     golang_path: "/opt/golang"
 
   roles:
-    - curuvija.golang
+    - curuvija.ansible_role_golang
 
 ```
 

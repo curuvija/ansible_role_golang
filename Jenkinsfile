@@ -4,7 +4,7 @@ pipeline {
 
     options{
         buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
-        checkoutToSubdirectory('curuvija.golang')
+        checkoutToSubdirectory('curuvija.ansible_role_golang')
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
         stage ("Run ansible-lint") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'ansible-lint'
                     }
                 }
@@ -26,7 +26,7 @@ pipeline {
         stage ("Run yamllint") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'yamllint .'
                     }
                 }
@@ -35,7 +35,7 @@ pipeline {
         stage ("Run flake8") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'flake8'
                     }
                 }
@@ -44,7 +44,7 @@ pipeline {
         stage ("Run Molecule create") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'molecule create'
                     }
                 }
@@ -53,7 +53,7 @@ pipeline {
         stage ("Run Molecule converge") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'molecule converge'
                     }
                 }
@@ -62,7 +62,7 @@ pipeline {
         stage ("Run Molecule idemotence") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'molecule idempotence'
                     }
                 }
@@ -71,7 +71,7 @@ pipeline {
         stage ("Run Molecule verify") {
             steps {
                 container('molecule') {
-                    dir('curuvija.golang') {
+                    dir('curuvija.ansible_role_golang') {
                         sh 'molecule verify'
                     }
                 }

@@ -4,6 +4,6 @@
   gather_facts: true
   become: true
   tasks:
-    - name: "Include curuvija.golang"
+    - name: "Include curuvija.ansible_role_golang"
       ansible.builtin.include_role:
-        name: "curuvija.golang"
+        name: "curuvija.ansible_role_golang"
